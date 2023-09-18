@@ -2,11 +2,11 @@
 # Sets up a web server for deployment of web_static.
 
 sudo apt-get update
-sudo apt-get install -y nginx
+apt-get install -y nginx
 
-sudo mkdir -p /data/web_static/releases/test/
+mkdir -p /data/web_static/releases/test/
 sudo mkdir -p /data/web_sitatic/shared/
-sudo echo "Holberton School" > /data/web_static/releases/test/index.html
+sudo echo "Holberton School" | sudo tee /data/web_static/releases/test/index.html
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
 sudo chown -R ubuntu /data/
@@ -33,6 +33,6 @@ sudo printf %s "server {
       root /var/www/html;
       internal;
     }
-}" > /etc/nginx/sites-available/default
+}" | sudo tee /etc/nginx/sites-available/default
 
 sudo service nginx restart
